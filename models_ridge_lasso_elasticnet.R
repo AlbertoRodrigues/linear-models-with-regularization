@@ -14,7 +14,7 @@ X=model.matrix(y~x+I(x^2)+I(x^3))[,-1];X
 dados=cbind.data.frame(X,y);dados
 
 lambda = 10^seq(-4, 4, length = 200);lambda
-#Regress„o Ridge
+#Regress√£o Ridge
 ridge <- train(
   y ~., data = dados, method = "glmnet",
   trControl = trainControl("cv", number = 10),
@@ -24,11 +24,11 @@ ridge <- train(
 plot(ridge,sign.lambda = 1)
 pos=which(ridge$results$lambda==ridge$bestTune$lambda)
 ridge$results[pos,]
-# Par‚metros
+# Par√¢metros
 coef(ridge$finalModel, ridge$bestTune$lambda)
 
 
-#Regress„o Lasso
+#Regress√£o Lasso
 lasso <- train(
   y ~., data = dados, method = "glmnet",
   trControl = trainControl("cv", number = 10),
@@ -38,7 +38,7 @@ lasso <- train(
 plot(lasso,sign.lambda = 1)
 pos=which(lasso$results$lambda==lasso$bestTune$lambda)
 lasso$results[pos,]
-# Par‚metros
+# Par√¢metros
 coef(lasso$finalModel, lasso$bestTune$lambda)
 
 #Elastic Net
@@ -52,7 +52,7 @@ elastic <- train(
 plot(elastic,sign.lambda = 1)
 pos=which(elastic$results$alpha==elastic$bestTune$alpha & elastic$results$lambda==elastic$bestTune$lambda)
 elastic$results[pos,]
-# Par‚metros
+# Par√¢metros
 coef(elastic$finalModel, elastic$bestTune$lambda)
 
 
